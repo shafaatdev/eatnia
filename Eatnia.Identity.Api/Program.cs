@@ -1,4 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Eatnia.Identity.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("EatniaIdentityApiContextConnection") ?? throw new InvalidOperationException("Connection string 'EatniaIdentityApiContextConnection' not found.");
+
+builder.Services.AddDbContext<EatniaIdentityApiContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<EatniaIdentityApiContext>();
 
 // Add services to the container.
 
