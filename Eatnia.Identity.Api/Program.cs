@@ -1,9 +1,26 @@
+using Eatnia.Identity.Api.Entities;
 using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
+using System.Configuration;
+using Eatnia.Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("EatniaIdentityApiContextConnection") ?? throw new InvalidOperationException("Connection string 'EatniaIdentityApiContextConnection' not found.");
 
 // Add services to the container.
+
+BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
+builder.Services.AddDefaultIdentity<ApplicationUser>()
+    .AddRoles<ApplicationRole>()
+    .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+    (
+        mongoDbSettings?.ConnectionString,
+        serviceSettings?.ServiceName
+    );
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,8 +38,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapRazorPages();
 
 app.Run();

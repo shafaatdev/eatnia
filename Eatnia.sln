@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Search.Api", "Eatnia
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Identity.Api", "Eatnia.Identity.Api\Eatnia.Identity.Api.csproj", "{417D7F43-E2CC-4975-96B0-841B82DB2A3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Common", "Eatnia.Common\Eatnia.Common.csproj", "{48937D40-3F8F-42C4-BA37-880EE037845D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{417D7F43-E2CC-4975-96B0-841B82DB2A3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{417D7F43-E2CC-4975-96B0-841B82DB2A3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{417D7F43-E2CC-4975-96B0-841B82DB2A3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48937D40-3F8F-42C4-BA37-880EE037845D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48937D40-3F8F-42C4-BA37-880EE037845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48937D40-3F8F-42C4-BA37-880EE037845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48937D40-3F8F-42C4-BA37-880EE037845D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
