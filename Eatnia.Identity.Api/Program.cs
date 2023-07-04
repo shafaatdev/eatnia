@@ -5,6 +5,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
 using System.Configuration;
 using Eatnia.Common.Settings;
+using Eatnia.Identity.Api.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
 var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
+var identityServerSettings = builder.Configuration.GetSection(nameof(IdentityServerSettings)).Get<IdentityServerSettings>();
+
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
@@ -21,6 +24,17 @@ builder.Services.AddDefaultIdentity<ApplicationUser>()
         mongoDbSettings?.ConnectionString,
         serviceSettings?.ServiceName
     );
+
+builder.Services.AddIdentityServer(options => {
+    options.Events.RaiseSuccessEvents = true;
+    options.Events.RaiseFailureEvents = true;
+    options.Events.RaiseErrorEvents = true;
+})
+    .AddAspNetIdentity<ApplicationUser>()
+    .AddInMemoryApiScopes(identityServerSettings.ApiScopes)
+    .AddInMemoryClients(identityServerSettings.Clients)
+    .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
+    .AddDeveloperSigningCredential();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -39,6 +53,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
+app.UseIdentityServer();
 
 app.UseAuthorization();
 
