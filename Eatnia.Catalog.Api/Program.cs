@@ -1,27 +1,11 @@
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Eatnia.Common.Settings;
-using Eatnia.Catalog.Api.Repositories;
+using Eatnia.Common.MongoDB;
+using Eatnia.Catalog.Api.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
-
-var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-
-builder.Services.AddSingleton(serviceProvider =>
-{
-    var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-    var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-    return mongoClient.GetDatabase(serviceSettings.ServiceName);
-});
-
-builder.Services.AddSingleton<ICatalogRepository, CatalogRepository>();
+builder.Services.AddMongo()
+                .AddMongoRepository<CatalogItem>("items");
 
 builder.Services.AddControllers(options =>
 {

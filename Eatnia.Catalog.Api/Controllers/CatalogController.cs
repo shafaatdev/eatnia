@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Eatnia.Catalog.Api.Dtos;
 using Eatnia.Catalog.Api.Entities;
-using Eatnia.Catalog.Api.Repositories;
-using Microsoft.AspNetCore.Mvc;
+using Eatnia.Common;
 
 namespace Eatnia.Catalog.Api.Controllers
 {
@@ -9,9 +9,9 @@ namespace Eatnia.Catalog.Api.Controllers
     [Route("catalog")]
     public class CatalogController : ControllerBase
     {
-        private readonly ICatalogRepository repository;
+        private readonly IRepository<CatalogItem> repository;
 
-        public CatalogController(ICatalogRepository repository)
+        public CatalogController(IRepository<CatalogItem> repository)
         {
             this.repository = repository;
         }

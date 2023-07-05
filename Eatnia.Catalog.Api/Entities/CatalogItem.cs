@@ -1,6 +1,8 @@
-﻿namespace Eatnia.Catalog.Api.Entities
+﻿using Eatnia.Common;
+
+namespace Eatnia.Catalog.Api.Entities
 {
-    public class CatalogItem
+    public class CatalogItem : IEntity
     {
         public Guid Id { get; set; }
 
