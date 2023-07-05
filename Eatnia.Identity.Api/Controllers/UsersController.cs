@@ -1,12 +1,15 @@
 ﻿using Eatnia.Identity.Api.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using static Duende.IdentityServer.IdentityServerConstants;
 
 namespace Eatnia.Identity.Api.Controllers
 {
     [ApiController]
     [Route("users")]
+    [Authorize(Policy = LocalApi.PolicyName)]
     public class UsersController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> userManager;

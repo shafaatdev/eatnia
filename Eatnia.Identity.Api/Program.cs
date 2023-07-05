@@ -37,6 +37,8 @@ builder.Services.AddIdentityServer(options => {
     .AddInMemoryIdentityResources(identityServerSettings.IdentityResources)
     .AddDeveloperSigningCredential();
 
+builder.Services.AddLocalApiAuthentication();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
