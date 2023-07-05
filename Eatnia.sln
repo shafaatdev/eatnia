@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Search.Api", "Eatnia.Search.Api\Eatnia.Search.Api.csproj", "{F190482B-3BBF-43D6-A20D-A487329CE1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eatnia.Search.Api", "Eatnia.Search.Api\Eatnia.Search.Api.csproj", "{F190482B-3BBF-43D6-A20D-A487329CE1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Identity.Api", "Eatnia.Identity.Api\Eatnia.Identity.Api.csproj", "{417D7F43-E2CC-4975-96B0-841B82DB2A3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eatnia.Identity.Api", "Eatnia.Identity.Api\Eatnia.Identity.Api.csproj", "{417D7F43-E2CC-4975-96B0-841B82DB2A3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Common", "Eatnia.Common\Eatnia.Common.csproj", "{48937D40-3F8F-42C4-BA37-880EE037845D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eatnia.Common", "Eatnia.Common\Eatnia.Common.csproj", "{48937D40-3F8F-42C4-BA37-880EE037845D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eatnia.Catalog.Api", "Eatnia.Catalog.Api\Eatnia.Catalog.Api.csproj", "{1828A2B3-A914-4856-9AFF-D1DA5B6AE666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{48937D40-3F8F-42C4-BA37-880EE037845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48937D40-3F8F-42C4-BA37-880EE037845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48937D40-3F8F-42C4-BA37-880EE037845D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1828A2B3-A914-4856-9AFF-D1DA5B6AE666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1828A2B3-A914-4856-9AFF-D1DA5B6AE666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1828A2B3-A914-4856-9AFF-D1DA5B6AE666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1828A2B3-A914-4856-9AFF-D1DA5B6AE666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
