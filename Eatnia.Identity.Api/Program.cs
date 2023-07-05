@@ -1,23 +1,24 @@
-using Eatnia.Identity.Api.Entities;
-using Microsoft.AspNetCore.Identity;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson;
-using System.Configuration;
 using Eatnia.Common.Settings;
 using Eatnia.Identity.Api.Settings;
+using Eatnia.Identity.Api.Entities;
+using Eatnia.Identity.Api.HostedServices;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 
 BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-var serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
-var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+var serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
-var identityServerSettings = builder.Configuration.GetSection(nameof(IdentityServerSettings)).Get<IdentityServerSettings>();
+var identityServerSettings = configuration.GetSection(nameof(IdentityServerSettings)).Get<IdentityServerSettings>();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>()
+builder.Services.Configure<IdentitySettings>(configuration.GetSection(nameof(IdentitySettings)))
+    .AddDefaultIdentity<ApplicationUser>()
     .AddRoles<ApplicationRole>()
     .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
     (
@@ -38,7 +39,7 @@ builder.Services.AddIdentityServer(options => {
     .AddDeveloperSigningCredential();
 
 builder.Services.AddLocalApiAuthentication();
-
+builder.Services.AddHostedService<IdentitySeedHostedService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

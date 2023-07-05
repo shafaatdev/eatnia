@@ -58,6 +58,7 @@ namespace Eatnia.Identity.Api.Controllers
             user.UserName = userDto.Email;
             user.Latitude = userDto.Latitude;
             user.Longitude = userDto.Longitude;
+            user.Balance = userDto.Balance;
 
             await userManager.UpdateAsync(user);
 

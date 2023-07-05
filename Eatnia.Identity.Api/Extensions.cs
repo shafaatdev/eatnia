@@ -12,6 +12,7 @@ namespace Eatnia.Identity.Api
                 user.Email,
                 user.Latitude,
                 user.Longitude,
+                user.Balance,
                 user.CreatedOn);
         }
     }

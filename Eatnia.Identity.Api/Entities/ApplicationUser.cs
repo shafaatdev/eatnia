@@ -8,5 +8,6 @@ namespace Eatnia.Identity.Api.Entities
     {
         public string Latitude { get; set; } = string.Empty;
         public string Longitude { get; set; } = string.Empty;
+        public decimal Balance { get; set; }
     }
 }
